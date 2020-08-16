@@ -8,10 +8,14 @@ const schema = buildSchema(`
     course(id: Int!): Course
     courses(topic: String): [Course]
   },
+  type Mutation {
+    updateCourseTopic(id: Int!, topic: String!): Course
+  }
   type Course {
     id: Int
     title: String
     author: String
+    topic: String
   }
 `);
 
@@ -19,12 +23,14 @@ const coursesData = [
   {
     id: 1,
     title: 'course 1',
-    author: 'Piyush'
+    author: 'Piyush',
+    topic: 'Node'
   },
   {
     id: 2,
     title: 'course 2',
-    author: 'Sawaria'
+    author: 'Sawaria',
+    topic: 'Graphql'
   }
 ];
 
@@ -44,10 +50,21 @@ const getCourses = (args) => {
   }
 }
 
+const updateCourseTopic = ({id, topic}) => {
+  coursesData.map(course => {
+      if (course.id === id) {
+          course.topic = topic;
+          return course;
+      }
+  });
+  return coursesData.filter(course => course.id === id) [0];
+}
+
 // Root resolver
 const root = {
   course: getCourse,
-  courses: getCourses
+  courses: getCourses,
+  updateCourseTopic
 };
 
 const app = express();

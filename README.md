@@ -44,3 +44,24 @@ query varibales
     "courseID2":2
 }
 ```
+
+Mutation
+```
+mutation updateCourseTopic($id: Int!, $topic: String!) {
+  updateCourseTopic(id: $id, topic: $topic) {
+    ... courseFields
+  }
+}
+
+fragment courseFields on Course {
+  title
+  author
+  topic
+}
+
+query varibales
+{
+  "id": 1,
+  "topic": "hh"
+}
+```
