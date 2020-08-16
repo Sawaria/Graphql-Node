@@ -58,17 +58,3 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 app.listen(4000, () => console.log('Express GraphQL Server Now Running On localhost:4000/graphql'));
-
-// reference - https://medium.com/codingthesmartway-com-blog/creating-a-graphql-server-with-node-js-and-express-f6dddc5320e1
-
-// query getSingleCourse($courseID: Int!) {
-//   course(id: $courseID) {
-//       title
-//       author
-//   }
-// }
-
-// query varibales
-// {
-//   "courseID": 1
-// }
